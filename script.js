@@ -1,7 +1,9 @@
 let confirmed_hist = [];
 let death_hist = [];
-let cured_hist = [];
+let recovery_hist = [];
 let tested_hist = [];
+let death_map = new Map();
+let recovery_map = new Map();
 
 $(document).ready(function(){
     
@@ -40,7 +42,7 @@ $(document).ready(function(){
       });
 });
 let xhttp = null;
-function reqGrapData(){
+function getreqGrapData(){
     if(xhttp) xhttp.abort();
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -50,7 +52,7 @@ function reqGrapData(){
             {
                 confirmed_hist[i] = data[i].confirmed;
                 death_hist[i] = data[i].death;
-                cured_hist[i] = data[i].cured;
+                recovery_hist[i] = data[i].cured;
                 tested_hist[i] = data[i].negative + confirmed_hist[i];
             }
         }
@@ -58,7 +60,7 @@ function reqGrapData(){
     xhttp.open("GET", "https://api.covid19uk.live/historyfigures", false);
     xhttp.send();
 }
-reqGrapData();
+getreqGrapData();
 
 function getDates(startDate, stopDate) {
     let dateArray = new Array();
@@ -79,9 +81,14 @@ function getDates(startDate, stopDate) {
  }
 
 let alldates = getDates(new Date("2020-01-31"),new Date());
-// let yesterday = new Date();
-// yesterday.setDate(yesterday.getDate() - 1);
+// Set Map for death and recovery
+for (i in alldates)
+{
+    death_map.set(alldates[i], death_hist[i]);
+    recovery_map.set(alldates[i], recovery_hist[i])
+}
 
+// --------------------------------------------------------------------------------------------------
 var config1 = {
     series: [{
         name: "总确诊",
@@ -295,44 +302,70 @@ document.getElementById("all-2").addEventListener("click", function(){
         }
     });
 })
-// var config3 = {
-//     series: [{
-//         name: "confirmed",
-//         data: confirmed_hist
-//     },
-//     {
-//         name: "death",
-//         data: death_hist
-//     }],
-//     chart: {
-//         id : 'confirmed and death hist',
-//         height: 350,
-//         type: 'line',
-//         zoom: {
-//           enabled: false
-//         }
-//     },
-//     colors: ['#3d0707', '#ff0000'],
-//     dataLabels: {
-//         enabled: false
-//     },
-//     stroke: {
-//         curve: 'smooth'
-//     },
-//     title: {
-//         text: 'Confirmed & Death',
-//         align: 'left'
-//     },
-//     grid: {
-//         row: {
-//           colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-//           opacity: 0.5
-//         },
-//       },
-//     xaxis: {
-//         categories: alldates
-//     }
-// };
-// var chart = new ApexCharts(document.getElementById("UK_history_confirmed"), config3);
-// chart.render();
+
+
+let rates = [];
+let death_rate = [];
+let recovery_rate = [];
+let death_rate_map = new Map();
+let recovery_rate_map = new Map(); 
+let rateDates = [];
+for (i in alldates)
+{
+    if (death_hist[i] != 0)
+    {
+        death_rate.push((death_hist[i] / confirmed_hist[i] * 100).toPrecision(2));
+        death_rate_map.set(alldates[i], death_hist[i] / confirmed_hist[i]);
+    }
+        
+    if (recovery_hist[i] != 0)
+    {
+        recovery_rate.push((recovery_hist[i] / confirmed_hist[i] * 100).toPrecision(2));
+        recovery_rate_map.set(alldates[i], recovery_hist[i] / confirmed_hist[i]);
+    }
+    if (death_hist[i] != 0 || recovery_hist[i] != 0)
+        rateDates.push(alldates[i])
+}
+        
+
+var config3 = {
+    series: [{
+        name: "recovery rate",
+        data: recovery_rate
+    },
+    {
+        name: "death rate",
+        data: death_rate
+    }],
+    chart: {
+        id : '治疗及死亡率',
+        height: 350,
+        type: 'line',
+        zoom: {
+          enabled: false
+        }
+    },
+    colors: ['#3d0707', '#ff0000'],
+    dataLabels: {
+        enabled: false
+    },
+    stroke: {
+        curve: 'smooth'
+    },
+    title: {
+        text: 'Confirmed & Death',
+        align: 'left'
+    },
+    grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+          opacity: 0.5
+        },
+      },
+    xaxis: {
+        categories: rateDates
+    }
+};
+var rateschart = new ApexCharts(document.getElementById("UK_deathrate_recoevryrate"), config3);
+rateschart.render();
 
