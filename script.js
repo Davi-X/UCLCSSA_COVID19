@@ -366,6 +366,6 @@ var config3 = {
         categories: rateDates
     }
 };
-var rateschart = new ApexCharts(document.getElementById("UK_deathrate_recoevryrate"), config3);
+var rateschart = new ApexCharts(document.getElementById("UK_rates"), config3);
 rateschart.render();
 
