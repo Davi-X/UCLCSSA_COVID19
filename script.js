@@ -6,7 +6,11 @@ let death_map = new Map();
 let recovery_map = new Map();
 
 $(document).ready(function(){
-    
+//     document.getElementById("start-button").addEventListener("click", function(){
+//     console.log("Enter");
+//     document.getElementById("welcome-card").style.display = none;
+//     document.getElementById("dashboard").style.display = block;
+// })
     $.getJSON("https://api.covid19uk.live/", function(result){
         // For overview and region data
         const data = result.data;
@@ -89,7 +93,7 @@ for (i in alldates)
 }
 
 // --------------------------------------------------------------------------------------------------
-var config1 = {
+var configHist = {
     series: [{
         name: "总确诊",
         data: confirmed_hist
@@ -114,7 +118,7 @@ var config1 = {
         curve: 'smooth'
     },
     title: {
-        text: 'Confirmed & Death',
+        text: '确诊及死亡',
         align: 'left'
     },
     grid: {
@@ -124,13 +128,14 @@ var config1 = {
         },
       },
     xaxis: {
+        type: 'datetime',
         categories: alldates,
         labels: {
             rotate: -10
         }
     }
 };
-var chart1 = new ApexCharts(document.getElementById("UK_history_confirmed"), config1);
+var chart1 = new ApexCharts(document.getElementById("UK_history_confirmed"), configHist);
 chart1.render();
 
 document.getElementById("7-day-1").addEventListener("click", function(){
@@ -208,7 +213,7 @@ for (i in death_hist)
         daily_death[i] = death_hist[i] - death_hist[i - 1];
 }
 
-var config2 = {
+var configDaily = {
     series: [{
         name: "单日死亡病例",
         data: death_hist
@@ -216,7 +221,7 @@ var config2 = {
     chart: {
         id : 'daily death hist',
         height: 350,
-        type: 'line',
+        type: 'bar',
         zoom: {
           enabled: false
         }
@@ -239,13 +244,11 @@ var config2 = {
         },
       },
     xaxis: {
+        type: 'datetime',
         categories: getDates(new Date("2020-01-31"), new Date()),
-        labels: {
-            rotate: -10
-        }
     }
 };
-var chart2 = new ApexCharts(document.getElementById("UK_daily_death"), config2);
+var chart2 = new ApexCharts(document.getElementById("UK_daily_death"), configDaily);
 chart2.render();
 
 document.getElementById("7-day-2").addEventListener("click", function(){
@@ -303,8 +306,52 @@ document.getElementById("all-2").addEventListener("click", function(){
     });
 })
 
+// --------------------------------------------------------------------------------------------------
 
-let rates = [];
+let active_hist = [];
+for(i in confirmed_hist)
+    active_hist[i] = confirmed_hist[i] - recovery_hist[i];
+
+var configActive = {
+    series: [{
+        name: "已确诊未被治愈",
+        data: active_hist
+    }],
+    chart: {
+        id : 'daily death hist',
+        height: 350,
+        type: 'line',
+        zoom: {
+          enabled: false
+        }
+    },
+    colors: ['#ff0000'],
+    dataLabels: {
+        enabled: false
+    },
+    stroke: {
+        curve: 'smooth'
+    },
+    title: {
+        text: '已确诊未被治愈',
+        align: 'left'
+    },
+    grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+          opacity: 0.5
+        },
+      },
+    xaxis: {
+        type: 'datetime',
+        categories: getDates(new Date("2020-01-31"), new Date()),
+    }
+};
+var active_chart = new ApexCharts(document.getElementById("UK_active"), configActive);
+active_chart.render();
+
+// --------------------------------------------------------------------------------------------------
+
 let death_rate = [];
 let recovery_rate = [];
 let death_rate_map = new Map();
@@ -314,13 +361,13 @@ for (i in alldates)
 {
     if (death_hist[i] != 0)
     {
-        death_rate.push((death_hist[i] / confirmed_hist[i] * 100).toPrecision(2));
+        death_rate.push((death_hist[i] / confirmed_hist[i] * 100).toPrecision(4));
         death_rate_map.set(alldates[i], death_hist[i] / confirmed_hist[i]);
     }
         
     if (recovery_hist[i] != 0)
     {
-        recovery_rate.push((recovery_hist[i] / confirmed_hist[i] * 100).toPrecision(2));
+        recovery_rate.push((recovery_hist[i] / confirmed_hist[i] * 100).toPrecision(4));
         recovery_rate_map.set(alldates[i], recovery_hist[i] / confirmed_hist[i]);
     }
     if (death_hist[i] != 0 || recovery_hist[i] != 0)
@@ -338,7 +385,7 @@ var config3 = {
         data: death_rate
     }],
     chart: {
-        id : '治疗及死亡率',
+        id : 'rates',
         height: 350,
         type: 'line',
         zoom: {
@@ -353,7 +400,7 @@ var config3 = {
         curve: 'smooth'
     },
     title: {
-        text: 'Confirmed & Death',
+        text: '治疗及死亡率',
         align: 'left'
     },
     grid: {
@@ -363,6 +410,7 @@ var config3 = {
         },
       },
     xaxis: {
+        type: 'datetime',
         categories: rateDates
     }
 };

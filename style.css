@@ -1,4 +1,4 @@
-/* .topleft{
+ /* .topleft{
 	position: absolute;
     top: 0;
     left: 0;
@@ -8,3 +8,35 @@
   top: 0;
   right: 0;
 } */
+
+.social-btn__facebook {
+  background-image: url('facebook.png');
+}
+.social-btn__ig {
+  background-image: url('ig.jpg');
+}
+.fa-facebook{
+  font-size: 25px;
+  color: dodgerblue;
+  padding: 10px;
+}
+.fa-instagram{
+  font-size: 25px;
+  color: deeppink;
+  padding: 10px;
+}
+.fa-weibo{
+  font-size: 25px;
+  color: orange;
+  padding: 10px;
+}
+.fa-envelope{
+  font-size: 25px;
+  color: mintcream;
+  padding: 10px;
+}
+
+.container {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}

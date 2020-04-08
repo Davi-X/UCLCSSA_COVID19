@@ -13,11 +13,12 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
         <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
-        <!-- Chart JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.0-alpha/Chart.min.js"></script>
+
         <!-- ApexCharts JS-->
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         
+        <!-- Awesome5 icons -->
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <title>UCLCSSA COVID-19 updated</title>
         
         <!-- <script async="" src="//www.google-analytics.com/analytics.js"></script> -->
@@ -31,30 +32,20 @@
      
          gtag('config', 'UA-128171628-2');
          </script> -->
-         <!-- <style>
-             .topleft{
-	            position: absolute;
-                top: 0;
-                left: 0;
-            }
-            .topright {
-                position: absolute;
-                top: 0;
-                right: 0;
-            }
-             
-         </style> -->
     </head>
     <body> 
-        <!-- <div class="topleft">
-                <img src="UCLCSSA.jpg" style="max-width:300px;padding:30px;">
-            </div>
-            <div class="topright">
-                <img src="logo.jpg" style="max-width:170px;padding:50px;">
-            </div> -->
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
-           
-            <header class="mdl-layout__header">
+        <div id="dashboard" class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs" >
+            <header class="mdl-layout__header mdl_layout--waterfall portofolio-header">
+
+                <div class="mdl-layout__header-row portfolio-logo-row">
+                    <span class="mdl-layout__title">
+                        <div class="portfolio-logo">
+                            <img src="UCLCSSA.jpg" >
+                        </div>
+                        <span class="mdl-layout__title">COVID-19 UK Update</span>
+                    </span>
+                </div>
+
                 <!-- Tabs -->
                 <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
                     <a href="#UK_overview"      class="mdl-layout__tab is-active">概览</a>
@@ -67,45 +58,48 @@
             <main class="mdl-layout__content">
                 <section class="mdl-layout__tab-panel is-active" id="UK_overview">
                     <div class="page-content">
-                        <div>
-                            <h1>Coronavirus Cases:</h1>
-                            <div id="confirmed"></div>
+                        <div class="container">
+                            <h2 style="text-align: center;">确诊</h1>
+                            <div id="confirmed" style="font-size: 30px; text-align: center;"></div>
                         </div>
-                        <div>
-                            <h1>Death:</h1>
-                            <div id="death"></div>
+                        <div class="container">
+                            <h2 style="text-align: center; color: crimson;">死亡</h1>
+                            <div id="death" style="font-size: 30px; text-align: center; color: red;"></div>
                         </div>
-                        <div>
-                            <h2>Cured:</h2>
-                            <div id="cured"></div>
+                        <div class="container">
+                            <h2 style="text-align: center; color: forestgreen;">治愈</h2>
+                            <div id="cured" style="font-size: 30px; text-align: center; color: lawngreen;"></div>
                         </div>
-                        <div>
-                            <h2>Tested:</h2>
-                            <div id="tested"></div>
+                        <div class="container">
+                            <h2 style="text-align: center;">已测试</h2>
+                            <div id="tested" style="font-size: 30px; text-align: center;"></div>
                         </div>
-                        <div>
-                            <h2>Negative:</h2>
-                            <div id="negative"></div>
+                        <div class="container">
+                            <h2 style="text-align: center;">阴性</h2>
+                            <div id="negative" style="font-size: 30px; text-align: center;"></div>
                         </div>
                     </div>
                 </section>
                 <section class="mdl-layout__tab-panel" id="country_overview">
                     <div class="page-content">
-                        <div>
-                            <h1>England:</h1>
-                            <div id="england"></div>
-                        </div>
-                        <div>
-                            <h1>Scotland:</h1>
-                            <div id="scotland"></div>
-                        </div>
-                        <div>
-                            <h1>Wales:</h1>
-                            <div id="wales"></div>
-                        </div>
-                        <div>
-                            <h1></h1>Ireland:</h1>
-                            <div id="nireland"></div>
+                        <div class=row>
+                            <div class="col-6">
+                                <h3 style="text-align: center; color :firebrick;">英格兰</h1>
+                                <div id="england" style="font-size: 30px; text-align: center;"></div>
+                            </div>
+                            <div class="col-6">
+                                <h3 style="text-align: center; color: dodgerblue">苏格兰</h1>
+                                <div id="scotland" style="font-size: 30px; text-align: center;"></div>
+                            </div>
+                            <div class="w-100" style="padding-top:90px; padding-bottom: 90px;"></div>
+                            <div class="col-6">
+                                <h3 style="text-align: center; color: forestgreen">威尔士</h1>
+                                <div id="wales" style="font-size: 30px; text-align: center;"></div>
+                            </div>
+                            <div class="col-6">
+                                <h3 style="text-align: center; color: goldenrod;">北爱尔兰</h1>
+                                <div id="nireland" style="font-size: 30px; text-align: center;"></div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -117,7 +111,7 @@
                             <button type="button" class="btn btn-dark btn-sm" id="all-1">ALL</button>
                             <div id="UK_history_confirmed"></div>
 
-                            <form action="/script.js" target="_blank" method="post">
+                            <!-- <form action="/script.js" target="_blank" method="post">
                                 <label for="fname">First name:</label><br>
                                 <input type="text" id="fname" name="fname" value="John"><br>
                                 <label for="lname">Last name:</label><br>
@@ -125,13 +119,13 @@
                                 <input type="submit" value="Submit">
                               </form>
                             <input class="btn btn-primary" type="submit" value="Submit">
-                            <input class="btn btn-primary" type="reset" value="Reset">
+                            <input class="btn btn-primary" type="reset" value="Reset"> -->
 
                             <button type="button" class="btn btn-danger btn-sm" id="7-day-2">一周内</button>
                             <button type="button" class="btn btn-warning btn-sm" id="2-week-2">两周内</button> 
                             <button type="button" class="btn btn-dark btn-sm" id="all-2">ALL</button>
                             <div id="UK_daily_death"></div> 
-                            
+                            <div id="UK_active" style="display: none;"></div>
                             <div id="UK_rates"></div> 
                         </div>
                     </div>
@@ -145,10 +139,41 @@
                         </nav>
                     </div>
                 </section>
-            </main>
+
+            </main>                
+            <footer class="mdl-mini-footer">
+
+                <div class="mdl-mini-footer__left-section">    
+                    <!-- <div class="topleft">
+                        <img src="UCLCSSA.jpg" style="max-width: 60%; height: auto; padding: 20px;">
+                    </div>
+                    <div class="topright">
+                        <img src="logo.jpg" style="max-width:200px;padding:50px;">
+                    </div> -->
+                    <a href="https://www.facebook.com/UCLU-CSSA-Chinese-Students-Scholars-Association-691076590989125/">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/uclcssa_official">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.weibo.com/cssaucl?refer_flag=1001030103_&is_hot=1">
+                        <i class="fab fa-weibo"></i>
+                    </a>
+                    <a href="mailto:info@uclcssa.org">
+                        <i class="far fa-envelope"></i>
+                    </a>
+                    <!-- <button class="mdl-mini-footer--social-btn social-btn social-btn__facebook">
+                        <span class="visuallyhidden">Facebook</span>
+                    </button>
+                    <button class="mdl-mini-footer--social-btn social-btn social-btn__ig">
+                        <span class="visuallyhidden">Instagram</span>
+                    </button> -->
+                </div>
+            </footer>
         </div>
         <script src="script.js"></script>
     </body>
+
 </html>
 
 
