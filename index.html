@@ -8,17 +8,18 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-red.min.css" /> 
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-        <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
+        <script src= "https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"></script> 
 
         <!-- ApexCharts JS-->
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         
         <!-- Awesome5 icons -->
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <link rel="stylesheet" href="css/all.min.css">
+
         <title>UCLCSSA COVID-19 updated</title>
         
         <!-- <script async="" src="//www.google-analytics.com/analytics.js"></script> -->
@@ -51,7 +52,7 @@
                     <a href="#UK_overview"      class="mdl-layout__tab is-active">概览</a>
                     <a href="#country_overview" class="mdl-layout__tab">国家概览</a>
                     <a href="#statistics"       class="mdl-layout__tab">数据图表</a>
-                    <a href="#map"              class="mdl-layout__tab">地图</a>
+                    <!-- <a href="#map"              class="mdl-layout__tab">地图</a> -->
                     <a href="#region_overview"  class="mdl-layout__tab">地区数据</a>
                 </div>
             </header>
@@ -130,13 +131,49 @@
                         </div>
                     </div>
                 </section>
-                <section class="mdl-layout__tab-panel" id="map">
-                    <div class="page-content"><!-- Your content goes here --></div>
-                </section>
+                <!-- <section class="mdl-layout__tab-panel" id="map">
+                    <div class="page-content">
+                        
+                    </div>
+                </section> -->
                 <section class="mdl-layout__tab-panel" id="region_overview">
                     <div class="page-content">
-                        <nav id="feature-list">
-                        </nav>
+
+
+
+
+                        <div class="region-tools">
+                            <div class="row">
+                                <div class="col-sm" >
+                                    <button id="alph-button">按字母排序</button>
+                                </div>
+                                <div class="col-sm" id="sever-button">
+                                    <button>按数量排序</button>
+                                </dib>
+                                <div class="col-sm" id="search">
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="region-data">
+                            <div class="row">
+                                <div class="col-9" style="padding-left: 18px; font-size: 25px;  font-family: 'Open Sans Condensed';  font-weight: 700; padding-top: 10px;
+                                padding-bottom: 5px;" >
+                                    地区
+                                </div>
+                                <div class="col-3" style=" font-size: 20px;  font-family: 'Open Sans Condensed';  font-weight: 700; padding-top: 10px;
+                                padding-bottom: 5px;">
+                                    数量
+                                </div>
+                            </div>
+                            <nav id="feature-list">
+                            </nav>
+                        </div>
                     </div>
                 </section>
 
@@ -154,7 +191,7 @@
                         <i class="fab fa-facebook"></i>
                     </a>
                     <a href="https://www.instagram.com/uclcssa_official">
-                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-instagram" ></i>
                     </a>
                     <a href="https://www.weibo.com/cssaucl?refer_flag=1001030103_&is_hot=1">
                         <i class="fab fa-weibo"></i>
@@ -162,12 +199,6 @@
                     <a href="mailto:info@uclcssa.org">
                         <i class="far fa-envelope"></i>
                     </a>
-                    <!-- <button class="mdl-mini-footer--social-btn social-btn social-btn__facebook">
-                        <span class="visuallyhidden">Facebook</span>
-                    </button>
-                    <button class="mdl-mini-footer--social-btn social-btn social-btn__ig">
-                        <span class="visuallyhidden">Instagram</span>
-                    </button> -->
                 </div>
             </footer>
         </div>

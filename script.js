@@ -4,18 +4,12 @@ let recovery_hist = [];
 let tested_hist = [];
 let death_map = new Map();
 let recovery_map = new Map();
-
+let regional_data = new Map();
 $(document).ready(function(){
-//     document.getElementById("start-button").addEventListener("click", function(){
-//     console.log("Enter");
-//     document.getElementById("welcome-card").style.display = none;
-//     document.getElementById("dashboard").style.display = block;
-// })
     $.getJSON("https://api.covid19uk.live/", function(result){
         // For overview and region data
         const data = result.data;
         let regionJSON = JSON.parse(data[0].area.replace(/\\/g, ''));
-
         let UK_data = [];
         let overview = new Map();
         let region_data= new Map();
@@ -27,18 +21,38 @@ $(document).ready(function(){
         overview.set("cured",data[1].cured);
 
         regionJSON.forEach(place => {
-            region_data.set(place.location,place.number);
+            if (place.number.toString().includes(','))
+                place.number = place.number.replace(/,/g, '');                
+            region_data.set(place.location.trim(), parseInt(place.number.toString().trim()));
         });
-        
+        regional_data = region_data;
+
+        //  Insert Overview data
+        keys.forEach(key => {document.getElementById(key).innerHTML = overview.get(key);});
         function replaceOverall()
         {
-            //  Insert Overview data
-            keys.forEach(key => {document.getElementById(key).innerHTML = UK_data[0].get(key);});
-
             // Insert Region data
             for (let key of region_data.keys())
             {
-                let regionHTML = '<div class="external-html">' + '<p>' + key + '</p>' + '<strong>' + region_data.get(key) + '</strong>' + '</div>';
+                let color = 'black';
+                if (region_data.get(key) < 50)
+                    color = 'springgreen';
+                else if (region_data.get(key) > 200) 
+                    color = 'gold'
+                if (region_data.get(key) > 500)
+                    color = 'red';
+                let regionHTML = '<div class="external-html">' + 
+                                    '<div class="regionContainer" style="padding-top: 15px; padding-bottom: 15px;">' + 
+                                        '<div class="row">' + 
+                                            '<div class="col-9">' + 
+                                                '<span class="region" style="font-size : 20px; font-family: \'Trocchi\', serif; padding-left: 5px;">' + key + '</span>' + 
+                                            '</div>' + 
+                                            '<div class="col-3">' + 
+                                                '<span class="region-number" style="font-size : 20px; font-family: \'Trocchi\', serif; color :' + color + ';">' + region_data.get(key) + '</span>' + 
+                                            '</div>' + 
+                                        '</div>' + 
+                                    '</div>' + 
+                                '</div>';
                 document.getElementById("feature-list").innerHTML += regionHTML;
             }
         }
@@ -417,3 +431,28 @@ var config3 = {
 var rateschart = new ApexCharts(document.getElementById("UK_rates"), config3);
 rateschart.render();
 
+function updateRegionalData(map){
+    let iterkeys = map.keys();
+    let itervals = map.values();
+    for (i = 0; i < map.size; i++)
+    {
+        document.getElementsByClassName("region")[i].innerHTML = iterkeys.next().value;
+        document.getElementsByClassName("region-number")[i].innerHTML = itervals.next().value;
+    }
+}
+document.getElementById("alph-button").addEventListener("click", function(){
+    let keys = [];
+    for (let key of regional_data.keys())
+        keys.push(key);
+    keys.sort();
+    regional_data.clear();
+    temp_map = new Map();
+    for (key of keys)
+    {
+        console.log(key)
+    }
+        temp_map.set(key, regional_data.get(key));
+    regional_data.clear();
+    regional_data = temp_map;
+    updateRegionalData(regional_data);
+})
