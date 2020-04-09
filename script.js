@@ -85,14 +85,7 @@ function getDates(startDate, stopDate) {
     let currentDate = startDate;
     while (currentDate <= stopDate) {
         currentDate = new Date(currentDate);
-        let month = currentDate.getMonth() + 1;
-        let day = currentDate.getDate();
-        if(month < 10) 
-            month = '0' + month;
-        if(day < 10)
-            day = '0' + day;
-        let date = month + '-' + day;
-        dateArray.push(date);
+        dateArray.push(currentDate.toString());
         currentDate = currentDate.setDate(currentDate.getDate() + 1);
    }
    return dateArray;
@@ -145,6 +138,7 @@ var configHist = {
         type: 'datetime',
         categories: alldates,
         labels: {
+            format : "dd/MM",
             rotate: -10
         }
     }
@@ -259,6 +253,9 @@ var configDaily = {
       },
     xaxis: {
         type: 'datetime',
+        labels:{
+            format: "dd/MM"
+        },
         categories: getDates(new Date("2020-01-31"), new Date()),
     }
 };
@@ -357,6 +354,9 @@ var configActive = {
       },
     xaxis: {
         type: 'datetime',
+        labels:{
+            format: "dd/MM"
+        },
         categories: getDates(new Date("2020-01-31"), new Date()),
     }
 };
@@ -424,6 +424,9 @@ var config3 = {
       },
     xaxis: {
         type: 'datetime',
+        labels:{
+            format: "dd/MM"
+        },
         categories: rateDates
     }
 };
@@ -459,7 +462,6 @@ document.getElementById("alph-button").addEventListener("click", function(){
         temp_map.set(key, regional_data.get(key));
     regional_data.clear();
     regional_data = temp_map;
-    console.log(temp_map)
     updateRegionalData(regional_data);
 })
 document.getElementById("num-button").addEventListener("click", function(){
