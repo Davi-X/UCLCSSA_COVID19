@@ -306,7 +306,6 @@ document.getElementById("2-week-2").addEventListener("click", function(){
 document.getElementById("all-2").addEventListener("click", function(){
         chart2.updateSeries([{
             name : "单日死亡病例",
-            type: 'line',
             data : daily_death
         }
     ])
@@ -436,8 +435,18 @@ function updateRegionalData(map){
     let itervals = map.values();
     for (i = 0; i < map.size; i++)
     {
+        let value = itervals.next().value;
+        let color = 'black';
+        if (value < 50)
+            color = 'springgreen';
+        else if (value > 200) 
+            color = 'gold'
+        if (value > 500)
+            color = 'red';
         document.getElementsByClassName("region")[i].innerHTML = iterkeys.next().value;
-        document.getElementsByClassName("region-number")[i].innerHTML = itervals.next().value;
+        document.getElementsByClassName("region")[i].style.color = color;
+        document.getElementsByClassName("region-number")[i].innerHTML = value;
+        document.getElementsByClassName("region-number")[i].style.color = color;
     }
 }
 document.getElementById("alph-button").addEventListener("click", function(){
@@ -445,14 +454,15 @@ document.getElementById("alph-button").addEventListener("click", function(){
     for (let key of regional_data.keys())
         keys.push(key);
     keys.sort();
-    regional_data.clear();
     temp_map = new Map();
     for (key of keys)
-    {
-        console.log(key)
-    }
         temp_map.set(key, regional_data.get(key));
     regional_data.clear();
     regional_data = temp_map;
+    console.log(temp_map)
+    updateRegionalData(regional_data);
+})
+document.getElementById("num-button").addEventListener("click", function(){
+    regional_data = new Map([...regional_data.entries()].sort((a, b) => b[1] - a[1]));
     updateRegionalData(regional_data);
 })

@@ -36,13 +36,13 @@
     </head>
     <body> 
         <div id="dashboard" class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs" >
-            <header class="mdl-layout__header mdl_layout--waterfall portofolio-header">
+            <header class="mdl-layout__header mdl_layout--waterfall">
 
-                <div class="mdl-layout__header-row portfolio-logo-row">
+                <div class="mdl-layout__header-row">
                     <span class="mdl-layout__title">
-                        <div class="portfolio-logo">
-                            <img src="UCLCSSA.jpg" >
-                        </div>
+                        <!-- <div class="portfolio-logo">
+                            <<img src="UCLCSSA.jpg" >
+                        </div> -->
                         <span class="mdl-layout__title">COVID-19 UK Update</span>
                     </span>
                 </div>
@@ -107,24 +107,25 @@
                 <section class="mdl-layout__tab-panel" id="statistics">
                     <div class="page-content">
                         <div class="container">
-                            <button type="button" class="btn btn-danger btn-sm" id="7-day-1">一周内</button>
-                            <button type="button" class="btn btn-warning btn-sm" id="1-month-1">一个月内</button> 
-                            <button type="button" class="btn btn-dark btn-sm" id="all-1">ALL</button>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <button type="button" class="btn btn-danger btn-sm" id="7-day-1">一周内</button>
+                                </div>
+                                <div class="col text-center">
+                                    <button type="button" class="btn btn-warning btn-sm" id="1-month-1">一个月内</button>
+                                </div>
+                                <div class="col text-center">
+                                    <button type="button" class="btn btn-dark btn-sm" id="all-1">ALL</button>
+                                </div>
+                            </div>
                             <div id="UK_history_confirmed"></div>
-
-                            <!-- <form action="/script.js" target="_blank" method="post">
-                                <label for="fname">First name:</label><br>
-                                <input type="text" id="fname" name="fname" value="John"><br>
-                                <label for="lname">Last name:</label><br>
-                                <input type="text" id="lname" name="lname" value="Doe"><br><br>
-                                <input type="submit" value="Submit">
-                              </form>
-                            <input class="btn btn-primary" type="submit" value="Submit">
-                            <input class="btn btn-primary" type="reset" value="Reset"> -->
-
-                            <button type="button" class="btn btn-danger btn-sm" id="7-day-2">一周内</button>
-                            <button type="button" class="btn btn-warning btn-sm" id="2-week-2">两周内</button> 
-                            <button type="button" class="btn btn-dark btn-sm" id="all-2">ALL</button>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <button type="button" class="btn btn-danger btn-sm" id="7-day-2">一周内</button>
+                                    <button type="button" class="btn btn-warning btn-sm" id="2-week-2">两周内</button> 
+                                    <button type="button" class="btn btn-dark btn-sm" id="all-2">ALL</button>
+                                </div>
+                            </div>
                             <div id="UK_daily_death"></div> 
                             <div id="UK_active" style="display: none;"></div>
                             <div id="UK_rates"></div> 
@@ -138,37 +139,25 @@
                 </section> -->
                 <section class="mdl-layout__tab-panel" id="region_overview">
                     <div class="page-content">
-
-
-
-
                         <div class="region-tools">
                             <div class="row">
-                                <div class="col-sm" >
-                                    <button id="alph-button">按字母排序</button>
+                                <div class="col text-center" >
+                                    <button type="button" class="btn btn-info btn-sm" id="alph-button">按字母排序</button>
                                 </div>
-                                <div class="col-sm" id="sever-button">
-                                    <button>按数量排序</button>
+                                <div class="col text-center" >
+                                    <button type="button" class="btn btn-info btn-sm" id="num-button">按数量排序</button>
                                 </dib>
-                                <div class="col-sm" id="search">
-                                    
-                                </div>
                             </div>
                         </div>
-
-
-
-
-
                         <div class="region-data">
                             <div class="row">
                                 <div class="col-9" style="padding-left: 18px; font-size: 25px;  font-family: 'Open Sans Condensed';  font-weight: 700; padding-top: 10px;
                                 padding-bottom: 5px;" >
                                     地区
                                 </div>
-                                <div class="col-3" style=" font-size: 20px;  font-family: 'Open Sans Condensed';  font-weight: 700; padding-top: 10px;
+                                <div class="col-3" style=" font-size: 18px;  font-family: 'Open Sans Condensed';  font-weight: 700; padding-top: 10px;
                                 padding-bottom: 5px;">
-                                    数量
+                                    确诊数
                                 </div>
                             </div>
                             <nav id="feature-list">
