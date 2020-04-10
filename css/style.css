@@ -1,20 +1,3 @@
- /* .topleft{
-	position: absolute;
-    top: 0;
-    left: 0;
-}
-.topright {
-  position: absolute;
-  top: 0;
-  right: 0;
-} */
-
-.social-btn__facebook {
-  background-image: url('facebook.png');
-}
-.social-btn__ig {
-  background-image: url('ig.jpg');
-}
 .fa-facebook{
   font-size: 25px;
   color: dodgerblue;
@@ -37,6 +20,28 @@
 }
 
 .container {
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.daily-increase {
+  padding-top: 20px;
+  font-size: 40px; 
+  text-align: center;
+}
+
+.overview-title {
+  padding-bottom: 20px; 
+  text-align: center;
+}
+
+.btn-group-wrap {
+  text-align: center;
+}
+
+div.btn-group {
+  margin: 0 auto; 
+  text-align: center;
+  width: inherit;
+  display: inline-block;
 }

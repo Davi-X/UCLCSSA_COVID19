@@ -60,24 +60,24 @@
                 <section class="mdl-layout__tab-panel is-active" id="UK_overview">
                     <div class="page-content">
                         <div class="container">
-                            <h2 style="text-align: center;">确诊</h1>
-                            <div id="confirmed" style="font-size: 30px; text-align: center;"></div>
+                            <h4 class="overview-title">确诊</h4>
+                            <div id="confirmed" style="padding-bottom: 15px; font-size: 70px; text-align: center;"></div>
+                            <div class="daily-increase"></div>
                         </div>
                         <div class="container">
-                            <h2 style="text-align: center; color: crimson;">死亡</h1>
-                            <div id="death" style="font-size: 30px; text-align: center; color: red;"></div>
+                            <h4 class="overview-title" style="color: crimson;">死亡</h4>
+                            <div id="death" style="padding-bottom: 15px; font-size: 70px; text-align: center; color: red;"></div>
+                            <div class="daily-increase" style="color: red;"></div>
                         </div>
                         <div class="container">
-                            <h2 style="text-align: center; color: forestgreen;">治愈</h2>
-                            <div id="cured" style="font-size: 30px; text-align: center; color: lawngreen;"></div>
+                            <h4 class="overview-title" style="color: forestgreen;">治愈</h4>
+                            <div id="cured" style="padding-bottom: 15px; font-size: 70px; text-align: center; color: lawngreen;"></div>
+                            <div class="daily-increase" style="color: lawngreen;"></div>
                         </div>
                         <div class="container">
-                            <h2 style="text-align: center;">已测试</h2>
-                            <div id="tested" style="font-size: 30px; text-align: center;"></div>
-                        </div>
-                        <div class="container">
-                            <h2 style="text-align: center;">阴性</h2>
-                            <div id="negative" style="font-size: 30px; text-align: center;"></div>
+                            <h4 class="overview-title">已测试</h4>
+                            <div id="tested" style="padding-bottom: 15px; font-size: 70px; text-align: center;"></div>
+                            <div class="daily-increase"></div>
                         </div>
                     </div>
                 </section>
@@ -107,28 +107,29 @@
                 <section class="mdl-layout__tab-panel" id="statistics">
                     <div class="page-content">
                         <div class="container">
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button type="button" class="btn btn-danger btn-sm" id="7-day-1">一周内</button>
-                                </div>
-                                <div class="col text-center">
-                                    <button type="button" class="btn btn-warning btn-sm" id="1-month-1">一个月内</button>
-                                </div>
-                                <div class="col text-center">
-                                    <button type="button" class="btn btn-dark btn-sm" id="all-1">ALL</button>
+                            <div class="btn-group-wrap">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-dark btn-sm" id="7-day-1" style="float: left;">一周内</button>
+                                    <button type="button" class="btn btn-outline-dark btn-sm" id="2-week-1" style="float: left;">两周内</button> 
+                                    <button type="button" class="btn btn-outline-dark btn-sm" id="all-1" style="float: left;">全部</button>
                                 </div>
                             </div>
+                            <hr>
                             <div id="UK_history_confirmed"></div>
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button type="button" class="btn btn-danger btn-sm" id="7-day-2">一周内</button>
-                                    <button type="button" class="btn btn-warning btn-sm" id="2-week-2">两周内</button> 
-                                    <button type="button" class="btn btn-dark btn-sm" id="all-2">ALL</button>
+                            <hr><hr><br>
+                            <div class="btn-group-wrap">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger btn-sm" id="7-day-2" style="float: left;">一周内</button>
+                                    <button type="button" class="btn btn-warning btn-sm" id="2-week-2" style="float: left;">两周内</button> 
+                                    <button type="button" class="btn btn-dark btn-sm" id="all-2" style="float: left;">全部</button>
                                 </div>
                             </div>
-                            <div id="UK_daily_death"></div> 
+                            <hr>
+                            <div id="UK_daily_death"></div>
+                            <hr><hr> 
                             <div id="UK_active" style="display: none;"></div>
-                            <div id="UK_rates"></div> 
+                            <div id="UK_rates"></div>
+                            <hr> 
                         </div>
                     </div>
                 </section>
@@ -139,27 +140,29 @@
                 </section> -->
                 <section class="mdl-layout__tab-panel" id="region_overview">
                     <div class="page-content">
-                        <div class="region-tools">
+
+                        <hr>
+                        <div class="region-data">
+                            <div class="row">
+                                <div class="col-9" style="padding-left: 18px; font-size: 25px;  font-family: 'Open Sans Condensed';  font-weight: 700;" >
+                                    地区
+                                </div>
+                                <div class="col-3" style="font-size: 18px;  font-family: 'Open Sans Condensed';  font-weight: 700;">
+                                    确诊数
+                                </div>
+                            </div>
+                            <hr>                        <div class="region-tools">
+
                             <div class="row">
                                 <div class="col text-center" >
                                     <button type="button" class="btn btn-info btn-sm" id="alph-button">按字母排序</button>
                                 </div>
                                 <div class="col text-center" >
                                     <button type="button" class="btn btn-info btn-sm" id="num-button">按数量排序</button>
-                                </dib>
+                                </div>
                             </div>
+                            <hr>
                         </div>
-                        <div class="region-data">
-                            <div class="row">
-                                <div class="col-9" style="padding-left: 18px; font-size: 25px;  font-family: 'Open Sans Condensed';  font-weight: 700; padding-top: 10px;
-                                padding-bottom: 5px;" >
-                                    地区
-                                </div>
-                                <div class="col-3" style=" font-size: 18px;  font-family: 'Open Sans Condensed';  font-weight: 700; padding-top: 10px;
-                                padding-bottom: 5px;">
-                                    确诊数
-                                </div>
-                            </div>
                             <nav id="feature-list">
                             </nav>
                         </div>
