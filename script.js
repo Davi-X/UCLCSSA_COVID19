@@ -14,9 +14,12 @@ let regional_data = new Map();
 
 let UK_data = [];
 let overview = new Map();
-let region_data= new Map();
+let region_data = new Map();
+let country_data = new Map();
 UK_data[0] = overview;
 UK_data[1] = region_data;
+UK_data[2] = country_data;
+
 const keys = ["confirmed","tested","cured","death","england","wales","scotland","nireland"];
 
 $(document).ready(function(){
@@ -55,7 +58,7 @@ $(document).ready(function(){
                                     '<div class="regionContainer">' + 
                                         '<div class="row">' + 
                                             '<div class="col-9">' + 
-                                                '<span class="region" style="font-size : 20px; font-family: \'Trocchi\', serif; padding-left: 5px;">' + key + '</span>' + 
+                                                '<span class="region" style="font-size : 20px; font-family: \'Trocchi\', serif; padding-left: 25px;">' + key + '</span>' + 
                                             '</div>' + 
                                             '<div class="col-3">' + 
                                                 '<span class="region-number" style="font-size : 20px; font-family: \'Trocchi\', serif; color :' + color + ';">' + region_data.get(key) + '</span>' + 
@@ -68,7 +71,13 @@ $(document).ready(function(){
             }
         }
         replaceOverall();
-      });
+    });
+    $.get("https://api.apify.com/v2/key-value-stores/KWLojgM5r1JmMW4b4/records/LATEST?disableRedirect=true", function(result){
+        document.getElementsByClassName("country-death")[0].innerHTML = result.englandDeceased;
+        document.getElementsByClassName("country-death")[1].innerHTML = result.scottlandDeceased;
+        document.getElementsByClassName("country-death")[2].innerHTML = result.walesDeceased;
+        document.getElementsByClassName("country-death")[3].innerHTML = result.northenIrelandDeceased;
+    });
 });
 let xhttp = null;
 function getreqGrapData(){
@@ -399,11 +408,11 @@ for (i in alldates)
 
 var config3 = {
     series: [{
-        name: "recovery rate",
+        name: "治疗率",
         data: recovery_rate
     },
     {
-        name: "death rate",
+        name: "死亡率",
         data: death_rate
     }],
     chart: {

@@ -61,22 +61,22 @@
                     <div class="page-content">
                         <div class="container">
                             <h4 class="overview-title">确诊</h4>
-                            <div id="confirmed" style="padding-bottom: 15px; font-size: 70px; text-align: center;"></div>
+                            <div class="overview-data" id="confirmed"></div>
                             <div class="daily-increase"></div>
                         </div>
                         <div class="container">
                             <h4 class="overview-title" style="color: crimson;">死亡</h4>
-                            <div id="death" style="padding-bottom: 15px; font-size: 70px; text-align: center; color: red;"></div>
+                            <div class="overview-data" id="death" style="color: red;"></div>
                             <div class="daily-increase" style="color: red;"></div>
                         </div>
                         <div class="container">
                             <h4 class="overview-title" style="color: forestgreen;">治愈</h4>
-                            <div id="cured" style="padding-bottom: 15px; font-size: 70px; text-align: center; color: lawngreen;"></div>
+                            <div class="overview-data" id="cured" style="color: lawngreen;"></div>
                             <div class="daily-increase" style="color: lawngreen;"></div>
                         </div>
                         <div class="container">
                             <h4 class="overview-title">已测试</h4>
-                            <div id="tested" style="padding-bottom: 15px; font-size: 70px; text-align: center;"></div>
+                            <div class="overview-data" id="tested"></div>
                             <div class="daily-increase"></div>
                         </div>
                     </div>
@@ -85,21 +85,25 @@
                     <div class="page-content">
                         <div class=row>
                             <div class="col-6">
-                                <h3 style="text-align: center; color :firebrick;">英格兰</h1>
-                                <div id="england" style="font-size: 30px; text-align: center;"></div>
+                                <h4 style="text-align: center; color :firebrick;">英格兰</h1>
+                                <div class="country-confirmed" id="england"></div>
+                                <div class="country-death"></div>
                             </div>
                             <div class="col-6">
-                                <h3 style="text-align: center; color: dodgerblue">苏格兰</h1>
-                                <div id="scotland" style="font-size: 30px; text-align: center;"></div>
+                                <h4 style="text-align: center; color: dodgerblue">苏格兰</h1>
+                                <div class="country-confirmed" id="scotland"></div>
+                                <div class="country-death"></div>
                             </div>
                             <div class="w-100" style="padding-top:90px; padding-bottom: 90px;"></div>
                             <div class="col-6">
-                                <h3 style="text-align: center; color: forestgreen">威尔士</h1>
-                                <div id="wales" style="font-size: 30px; text-align: center;"></div>
+                                <h4 style="text-align: center; color: forestgreen">威尔士</h1>
+                                <div class="country-confirmed" id="wales"></div>
+                                <div class="country-death"></div>
                             </div>
                             <div class="col-6">
-                                <h3 style="text-align: center; color: goldenrod;">北爱尔兰</h1>
-                                <div id="nireland" style="font-size: 30px; text-align: center;"></div>
+                                <h4 style="text-align: center; color: goldenrod;">北爱尔兰</h1>
+                                <div class="country-confirmed" id="nireland"></div>
+                                <div class="country-death"></div>
                             </div>
                         </div>
                     </div>
@@ -119,9 +123,9 @@
                             <hr><hr><br>
                             <div class="btn-group-wrap">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-danger btn-sm" id="7-day-2" style="float: left;">一周内</button>
-                                    <button type="button" class="btn btn-warning btn-sm" id="2-week-2" style="float: left;">两周内</button> 
-                                    <button type="button" class="btn btn-dark btn-sm" id="all-2" style="float: left;">全部</button>
+                                    <button type="button" class="btn btn-outline-dark btn-sm" id="7-day-2" style="float: left;">一周内</button>
+                                    <button type="button" class="btn btn-outline-dark btn-sm" id="2-week-2" style="float: left;">两周内</button> 
+                                    <button type="button" class="btn btn-outline-dark btn-sm" id="all-2" style="float: left;">全部</button>
                                 </div>
                             </div>
                             <hr>
@@ -144,7 +148,7 @@
                         <hr>
                         <div class="region-data">
                             <div class="row">
-                                <div class="col-9" style="padding-left: 18px; font-size: 25px;  font-family: 'Open Sans Condensed';  font-weight: 700;" >
+                                <div class="col-9" style="padding-left: 35px; font-size: 25px;  font-family: 'Open Sans Condensed';  font-weight: 700;" >
                                     地区
                                 </div>
                                 <div class="col-3" style="font-size: 18px;  font-family: 'Open Sans Condensed';  font-weight: 700;">
@@ -155,10 +159,10 @@
 
                             <div class="row">
                                 <div class="col text-center" >
-                                    <button type="button" class="btn btn-info btn-sm" id="alph-button">按字母排序</button>
+                                    <button type="button" class="btn btn-outline-info btn-sm" id="alph-button">按字母排序</button>
                                 </div>
                                 <div class="col text-center" >
-                                    <button type="button" class="btn btn-info btn-sm" id="num-button">按数量排序</button>
+                                    <button type="button" class="btn btn-outline-info btn-sm" id="num-button">按数量排序</button>
                                 </div>
                             </div>
                             <hr>

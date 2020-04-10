@@ -1,3 +1,24 @@
+.overview-data {
+  padding-bottom: 25px; 
+  font-size: 70px; 
+  text-align: center;
+}
+
+.country-confirmed {
+  font-size: 55px; 
+  text-align: center;
+  padding-top: 30px;
+  padding-left: 10px;
+}
+
+.country-death {
+  font-size: 40px; 
+  text-align: center;
+  padding-top: 40px;
+  padding-left: 10px;
+  color: #ff4242;
+}
+
 .fa-facebook{
   font-size: 25px;
   color: dodgerblue;
